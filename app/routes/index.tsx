@@ -1,4 +1,6 @@
-export default function Home() {
+import * as React from "react";
+
+export default function Index() {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-200">
       <div className="container">
