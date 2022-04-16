@@ -1,21 +1,42 @@
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  Stack,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import * as React from "react";
 
 export default function Index() {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-200">
-      <div className="container">
-        <div className="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
-          <div className="text-center">
-            <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-              Soham <span className="text-indigo-600">Sarkar</span>
-            </h2>
-            <h3 className="text-xl md:text-3xl mt-10">Coming Soon</h3>
-            <p className="text-md md:text-xl mt-10">
-              Digital Gardener for hire ..... on the way ....🔥
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Box as="section" bg="bg-surface">
+      <Container py={{ base: "16", md: "24" }}>
+        <Stack spacing={{ base: "8", md: "10" }}>
+          <Stack spacing={{ base: "4", md: "5" }} align="center">
+            <Heading size={useBreakpointValue({ base: "sm", md: "md" })}>
+              Ready to Grow?
+            </Heading>
+            <Text color="muted" maxW="2xl" textAlign="center" fontSize="xl">
+              With this beautiful and responsive React components you will
+              realize your next project in no time.
+            </Text>
+          </Stack>
+          <Stack
+            spacing="3"
+            direction={{ base: "column", sm: "row" }}
+            justify="center"
+          >
+            <Button variant="secondary" size="lg">
+              Learn more
+            </Button>
+            <Button variant="primary" size="lg">
+              Start Free Trial
+            </Button>
+          </Stack>
+        </Stack>
+      </Container>
+    </Box>
   );
 }
