@@ -1,12 +1,6 @@
-// entry.server.tsx
-import { renderToString } from "react-dom/server";
-import { CacheProvider } from "@emotion/react";
-import createEmotionServer from "@emotion/server/create-instance";
+import type { EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
-import type { EntryContext } from "@remix-run/node"; // Depends on the runtime you choose
-
-import { ServerStyleContext } from "./utils/context";
-import createEmotionCache from "./utils/createEmotionCache";
+import { renderToString } from "react-dom/server";
 
 export default function handleRequest(
   request: Request,
@@ -14,31 +8,13 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  const cache = createEmotionCache();
-  const { extractCriticalToChunks } = createEmotionServer(cache);
-
-  const html = renderToString(
-    <ServerStyleContext.Provider value={null}>
-      <CacheProvider value={cache}>
-        <RemixServer context={remixContext} url={request.url} />
-      </CacheProvider>
-    </ServerStyleContext.Provider>
-  );
-
-  const chunks = extractCriticalToChunks(html);
-
   const markup = renderToString(
-    <ServerStyleContext.Provider value={chunks.styles}>
-      <CacheProvider value={cache}>
-        <RemixServer context={remixContext} url={request.url} />
-      </CacheProvider>
-    </ServerStyleContext.Provider>
+    <RemixServer context={remixContext} url={request.url} />
   );
 
   responseHeaders.set("Content-Type", "text/html");
-  responseHeaders.set("X-Powered-By", "Remix");
 
-  return new Response(`<!DOCTYPE html>${markup}`, {
+  return new Response("<!DOCTYPE html>" + markup, {
     status: responseStatusCode,
     headers: responseHeaders,
   });
