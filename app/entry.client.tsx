@@ -4,8 +4,8 @@ import { hydrate } from "react-dom";
 import { CacheProvider } from "@emotion/react";
 import { RemixBrowser } from "@remix-run/react";
 
-import { ClientStyleContext } from "./context";
-import createEmotionCache from "./createEmotionCache";
+import { ClientStyleContext } from "./utils/context";
+import createEmotionCache from "./utils/createEmotionCache";
 
 interface ClientCacheProviderProps {
   children: React.ReactNode;
@@ -14,9 +14,9 @@ interface ClientCacheProviderProps {
 function ClientCacheProvider({ children }: ClientCacheProviderProps) {
   const [cache, setCache] = useState(createEmotionCache());
 
-  function reset() {
+  const reset = () => {
     setCache(createEmotionCache());
-  }
+  };
 
   return (
     <ClientStyleContext.Provider value={{ reset }}>

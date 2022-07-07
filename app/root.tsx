@@ -12,7 +12,7 @@ import {
 } from "@remix-run/react";
 import { MetaFunction, LinksFunction } from "@remix-run/node"; // Depends on the runtime you choose
 
-import { ServerStyleContext, ClientStyleContext } from "./context";
+import { ServerStyleContext, ClientStyleContext } from "./utils/context";
 import { theme } from "./styles/chakra.theme";
 
 export const meta: MetaFunction = () => ({
