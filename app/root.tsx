@@ -1,6 +1,11 @@
 // root.tsx
-import React, { useContext, useEffect } from "react";
-import { Box, ChakraProvider, Heading } from "@chakra-ui/react";
+import React from "react";
+import {
+  Box,
+  ChakraProvider,
+  ColorModeScript,
+  Heading,
+} from "@chakra-ui/react";
 import {
   Links,
   LiveReload,
@@ -19,7 +24,7 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export let links: LinksFunction = () => {
+export const links: LinksFunction = () => {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     { rel: "preconnect", href: "https://fonts.gstaticom" },
@@ -49,6 +54,7 @@ function Document({
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       </body>
     </html>
   );
